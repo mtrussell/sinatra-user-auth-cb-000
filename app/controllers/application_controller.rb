@@ -22,6 +22,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/sessions/login' do
+    @user = User.find_by(email: params["email"], password: params["password"])
+    session[:id] = @user.id
     erb :'sessions/login'
   end
 
